@@ -15,6 +15,7 @@ from ctypes import *
 from OpenGL.GL import *
 from pygame.locals import *
 
+from datetime import datetime
 import os
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
@@ -213,6 +214,16 @@ def center_mouse():
 	if pygame.key.get_focused():
 		pygame.mouse.set_pos(screen_center)
 
+def main_init():
+	if not os.path.exists('screenshots'):
+		os.mkdir('screenshots')
+
+def save_screen(surface, filename):
+	size = surface.get_size()
+	buffer = glReadPixels(0, 0, *size, GL_RGBA, GL_UNSIGNED_BYTE)
+	window_surf = pygame.image.fromstring(buffer, size, "RGBA")
+	pygame.image.save(window_surf, filename)
+
 #--------------------------------------------------
 #                  Video Recording
 #
@@ -236,6 +247,7 @@ def center_mouse():
 #---------------------------------------------------
 
 if __name__ == '__main__':
+	main_init()
 	pygame.init()
 	window = pygame.display.set_mode(win_size, OPENGL | DOUBLEBUF)
 	pygame.mouse.set_visible(False)
@@ -244,7 +256,16 @@ if __name__ == '__main__':
 	#======================================================
 	#               Change the fractal here
 	#======================================================
-	obj_render = tree_planet()
+	#obj_render = butterweed_hills()
+	#obj_render = infinite_spheres()
+	obj_render = mandelbox()
+	#obj_render = mausoleum()
+	#obj_render = menger()
+	#obj_render = sierpinski_tetrahedron()
+	#obj_render = snow_stadium()
+	#obj_render = test_fractal()
+	#obj_render = tree_planet()
+	
 	#======================================================
 
 	#======================================================
@@ -283,16 +304,23 @@ if __name__ == '__main__':
 	rec_vars = None
 	playback = None
 	playback_vars = None
+	playback_dir = None
 	playback_ix = -1
 	frame_num = 0
 
 	def start_playback():
 		global playback
 		global playback_vars
+		global playback_dir
 		global playback_ix
 		global prevMat
 		if not os.path.exists('playback'):
 			os.makedirs('playback')
+		now = datetime.now()
+		date_str =  now.strftime("%Y-%d-%m__%H-%M")
+		playback_dir = os.path.join('playback', date_str)
+		if not os.path.exists(playback_dir):
+			os.makedirs(playback_dir)
 		playback = np.load('recording.npy')
 		playback_vars = np.load('rec_vars.npy')
 		playback = interp_data(playback, 2)
@@ -320,7 +348,9 @@ if __name__ == '__main__':
 				elif event.key == pygame.K_p:
 					start_playback()
 				elif event.key == pygame.K_c:
-					pygame.image.save(window, 'screenshot.png')
+					now = datetime.now()
+					date_str =  now.strftime("%Y-%d-%m__%H-%M")
+					save_screen(window, os.path.join('screenshots', date_str + '__screenshot'+str(frame_num)+'.png'))
 				elif event.key == pygame.K_ESCAPE:
 					sys.exit(0)
 
@@ -405,7 +435,7 @@ if __name__ == '__main__':
 		else:
 			if playback_ix >= 0:
 				ix_str = '%04d' % playback_ix
-				pygame.image.save(window, 'playback/frame' + ix_str + '.png')
+				save_screen(window, os.path.join(playback_dir, 'frame' + ix_str + '.png'))
 			if playback_ix >= playback.shape[0]:
 				playback = None
 				break
@@ -429,4 +459,4 @@ if __name__ == '__main__':
 		pygame.display.flip()
 		clock.tick(max_fps)
 		frame_num += 1
-		print(clock.get_fps())
+		#print(clock.get_fps())
