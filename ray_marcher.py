@@ -4,12 +4,12 @@ import pygame, sys, math, random, os
 import numpy as np
 import pyspace
 
-from pyspace.coloring import *
-from pyspace.fold import *
-from pyspace.geo import *
-from pyspace.object import *
-from pyspace.shader import Shader
-from pyspace.camera import Camera
+from pyspace.src.coloring import *
+from pyspace.src.fold import *
+from pyspace.src.geo import *
+from pyspace.src.object import *
+from pyspace.src.shader import Shader
+from pyspace.src.camera import Camera
 
 from ctypes import *
 from OpenGL.GL import *

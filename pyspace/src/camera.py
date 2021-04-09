@@ -164,3 +164,48 @@ class Camera:
 
 	def __setitem__(self, k, x):
 		self.params[k] = x
+
+	def set_low_quality():
+		pass
+
+	def set_med_quality():
+		pass
+
+	def set_high_quality():
+		self.params['ANTIALIASING_SAMPLES'] = 1
+		self.params['AMBIENT_OCCLUSION_STRENGTH'] = 0.01
+		self.params['AMBIENT_OCCLUSION_COLOR_DELTA'] = (0.8, 0.8, 0.8)
+		self.params['BACKGROUND_COLOR'] = (0.6, 0.6, 0.9)
+		self.params['DEPTH_OF_FIELD_STRENGTH'] = 0.0
+		self.params['DEPTH_OF_FIELD_DISTANCE'] = 1.0
+		self.params['DIFFUSE_ENABLED'] = False
+		self.params['DIFFUSE_ENHANCED_ENABLED'] = True
+		self.params['EXPOSURE'] = 1.0
+		self.params['FIELD_OF_VIEW'] = 60.0
+		self.params['FOG_ENABLED'] = False
+		self.params['GLOW_ENABLED'] = False
+		self.params['GLOW_COLOR_DELTA'] = (-0.2, 0.5, -0.2)
+		self.params['GLOW_SHARPNESS'] = 4.0
+		self.params['LIGHT_COLOR'] = (1.0, 0.9, 0.6)
+		self.params['LIGHT_DIRECTION'] = (-0.36, 0.48, 0.80)
+		self.params['LOD_MULTIPLIER'] = 10.0
+		self.params['MAX_MARCHES'] = 1000
+		self.params['MAX_DIST'] = 50.0
+		self.params['MIN_DIST'] = 0.00001
+		self.params['MOTION_BLUR_LEVEL'] = 0
+		self.params['MOTION_BLUR_RATIO'] = 1.0
+		self.params['ODS'] = False
+		self.params['ORTHOGONAL_PROJECTION'] = False
+		self.params['ORTHOGONAL_ZOOM'] = 5.0
+		self.params['REFLECTION_LEVEL'] = 0
+		self.params['REFLECTION_ATTENUATION'] = 0.6
+		self.params['SHADOWS_ENABLED'] = True
+		self.params['SHADOW_DARKNESS'] = 0.8
+		self.params['SHADOW_SHARPNESS'] = 16.0
+		self.params['SPECULAR_HIGHLIGHT'] = 40
+		self.params['SUN_ENABLED'] = True
+		self.params['SUN_SIZE'] = 0.005
+		self.params['SUN_SHARPNESS'] = 2.0
+		self.params['VIGNETTE_FOREGROUND'] = False
+		self.params['VIGNETTE_STRENGTH'] = 0.5
+
