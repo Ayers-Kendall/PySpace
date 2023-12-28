@@ -77,11 +77,10 @@ class window(QMainWindow):
         self.show()
 
     def close_application(self):
-        choice = QMessageBox.question(self, 'Message',
-                                     "Are you sure to quit?", QMessageBox.Yes |
-                                     QMessageBox.No, QMessageBox.No)
 
-        if choice == QMessageBox.Yes:
+        if (choice := QMessageBox.question(self, 'Message',
+                                     "Are you sure to quit?", QMessageBox.Yes |
+                                     QMessageBox.No, QMessageBox.No)) == QMessageBox.Yes:
             sys.exit()
         else:
             pass
