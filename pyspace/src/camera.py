@@ -165,13 +165,13 @@ class Camera:
 	def __setitem__(self, k, x):
 		self.params[k] = x
 
-	def set_low_quality():
+	def set_low_quality(self):
 		pass
 
-	def set_med_quality():
+	def set_med_quality(self):
 		pass
 
-	def set_high_quality():
+	def set_high_quality(self):
 		self.params['ANTIALIASING_SAMPLES'] = 1
 		self.params['AMBIENT_OCCLUSION_STRENGTH'] = 0.01
 		self.params['AMBIENT_OCCLUSION_COLOR_DELTA'] = (0.8, 0.8, 0.8)
