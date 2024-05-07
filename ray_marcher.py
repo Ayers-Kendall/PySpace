@@ -419,7 +419,7 @@ if __name__ == '__main__':
 			if all_keys[pygame.K_s]:
 				acc[2] += speed_accel / max_fps
 
-			if np.dot(acc, acc) == 0.0:
+			if math.isclose(np.dot(acc, acc), 0.0, rel_tol=1e-09, abs_tol=0.0):
 				vel *= speed_decel # TODO
 			else:
 				vel += np.dot(mat[:3,:3].T, acc)

@@ -135,7 +135,7 @@ class FoldScaleTranslate:
 
 	def glsl(self):
 		ret_str = ''
-		if self.s != 1.0:
+		if not math.isclose(self.s, 1.0, rel_tol=1e-09, abs_tol=0.0):
 			if isinstance(self.s, (float, int)) and self.s >= 0:
 				ret_str += '\tp *= ' + float_str(self.s) + ';\n'
 			else:
@@ -158,7 +158,7 @@ class FoldScaleOrigin:
 
 	def glsl(self):
 		ret_str = ''
-		if self.s != 1.0:
+		if not math.isclose(self.s, 1.0, rel_tol=1e-09, abs_tol=0.0):
 			ret_str += '\tp = p*' + float_str(self.s) + ';p.w = abs(p.w);p += o;\n'
 		else:
 			ret_str += '\tp += o;\n'
